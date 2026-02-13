@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Check</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+    .health-container {
+      background: white;
+      border-radius: 20px;
+      padding: 50px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .status-icon {
+      font-size: 5em;
+      margin-bottom: 20px;
+      animation: rotate 3s linear infinite;
+    }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    h1 {
+      color: #11998e;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    .status {
+      background: #38ef7d;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 1.5em;
+      font-weight: bold;
+      display: inline-block;
+      margin: 20px 0;
+    }
+    .details {
+      margin-top: 30px;
+      color: #666;
+      font-size: 1.1em;
+    }
+    .detail-item {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="health-container">
+    <div class="status-icon">✅</div>
+    <h1>System Health</h1>
+    <div class="status">HEALTHY</div>
+    <div class="details">
+      <div class="detail-item">🖥️ <strong>Hostname:</strong> {{HOSTNAME}}</div>
+      <div class="detail-item">⏱️ <strong>Uptime:</strong> {{UPTIME}} minutes</div>
+      <div class="detail-item">🕐 <strong>Timestamp:</strong> {{TIMESTAMP}}</div>
+    </div>
+  </div>
+</body>
+</html>

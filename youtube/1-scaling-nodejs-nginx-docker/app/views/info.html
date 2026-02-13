@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Information</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: white;
+      text-align: center;
+      font-size: 3em;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+    .info-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+    .info-card:hover {
+      transform: translateY(-5px);
+    }
+    .info-card h2 {
+      color: #2c3e50;
+      font-size: 1.3em;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #3498db;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #ecf0f1;
+    }
+    .info-row:last-child {
+      border-bottom: none;
+    }
+    .label {
+      color: #7f8c8d;
+      font-weight: 600;
+    }
+    .value {
+      color: #2c3e50;
+      font-weight: bold;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 30px;
+      background: #ecf0f1;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3498db, #2ecc71);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      transition: width 1s ease;
+    }
+    .icon {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 System Information Dashboard</h1>
+
+    <div class="grid">
+      <div class="info-card">
+        <div class="icon">🖥️</div>
+        <h2>System Details</h2>
+        <div class="info-row">
+          <span class="label">Hostname</span>
+          <span class="value">{{HOSTNAME}}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Platform</span>
+          <span class="value">{{PLATFORM}}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Architecture</span>
+          <span class="value">{{ARCH}}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Process ID</span>
+          <span class="value">{{PID}}</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="icon">⚡</div>
+        <h2>CPU Information</h2>
+        <div class="info-row">
+          <span class="label">CPU Cores</span>
+          <span class="value">{{CPU_CORES}}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">CPU Model</span>
+          <span class="value">{{CPU_MODEL}}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">CPU Speed</span>
+          <span class="value">{{CPU_SPEED}} MHz</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="icon">💾</div>
+        <h2>Memory Usage</h2>
+        <div class="info-row">
+          <span class="label">Total Memory</span>
+          <span class="value">{{TOTAL_MEM}} GB</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Used Memory</span>
+          <span class="value">{{USED_MEM}} GB</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Free Memory</span>
+          <span class="value">{{FREE_MEM}} GB</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: {{MEM_PERCENT}}%">{{MEM_PERCENT}}%</div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="icon">⏱️</div>
+        <h2>Uptime Statistics</h2>
+        <div class="info-row">
+          <span class="label">System Uptime</span>
+          <span class="value">{{SYSTEM_UPTIME}} hours</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Process Uptime</span>
+          <span class="value">{{PROCESS_UPTIME}} minutes</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Node Version</span>
+          <span class="value">{{NODE_VERSION}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
