@@ -1,0 +1,60 @@
+version: "3.9"
+services:
+  traefik:
+    image: traefik:v2.11
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - traefik-demo
+
+  orders:
+    image: traefik/whoami
+    command: --name=orders
+    deploy:
+      replicas: 3
+    networks:
+      - traefik-demo
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.orders.rule=Host(`orders.localhost`)"
+      - "traefik.http.services.orders.loadbalancer.server.port=80"
+      - "traefik.http.services.orders-svc.loadbalancer.sticky.cookie=true"
+      - "traefik.http.services.orders-svc.loadbalancer.sticky.cookie.name=orders_sticky"
+      - "traefik.http.services.orders-svc.loadbalancer.sticky.cookie.httponly=true"
+  profile:
+    image: traefik/whoami
+    command: --name=profile
+    deploy:
+      replicas: 2
+    networks:
+      - traefik-demo
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.profile-router.entrypoints=web"
+      - "traefik.http.routers.profile-router.rule=Host(`profile.localhost`)"
+      - "traefik.http.routers.profile-router.service=profile-svc"
+      - "traefik.http.services.profile-svc.loadbalancer.server.port=80"
+  auth:
+    image: traefik/whoami
+    command: --name=auth
+    deploy:
+      replicas: 2
+    networks:
+      - traefik-demo
+    labels:
+      - "traefik.enable=false"
+      - "traefik.http.routers.auth-router.entrypoints=web"
+      - "traefik.http.routers.auth-router.rule=Host(`auth.localhost`)"
+      - "traefik.http.routers.auth-router.service=auth-svc"
+      - "traefik.http.services.auth-svc.loadbalancer.server.port=80"
+networks:
+  traefik-demo:
+    driver: bridge
