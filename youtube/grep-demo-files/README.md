@@ -4,6 +4,8 @@
 
 By the end of this video, the viewer will know how to use `grep` to:
 
+https://youtu.be/XCQ5kgDzmE8
+
 * Search text inside files.
 * Search logs quickly.
 * Filter errors and warnings.
