@@ -13,7 +13,7 @@ By the end of this video, the viewer will know how to use `grep` to:
 * Understand basic regex with `grep`.
 * Avoid common `grep` mistakes.
 
-> Instructor note: Keep this video practical. Show commands, show output, explain the situation, then move to the next troubleshooting step.
+
 
 ## 2. What is grep?
 
@@ -1097,10 +1097,4 @@ Remember the practical `grep` workflow:
 
 `grep` is not just a command. It is a troubleshooting habit.
 
-## 29. Video Closing Script
 
-If you work with Linux, servers, Docker, Kubernetes, or logs, `grep` is one of the tools you will use every single day.
-
-Mastering `grep` will save you minutes during normal work, and sometimes hours during incidents.
-
-If this video was useful, like the video, subscribe for more practical Linux, Docker, Kubernetes, and DevOps content, and comment with the command you use most when troubleshooting.
